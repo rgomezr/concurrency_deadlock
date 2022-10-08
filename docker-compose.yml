@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  concurrency_deadlock:
+    image: ${DOCKER_REGISTRY-}concurrencydeadlock
+    build:
+      context: .
+      dockerfile: concurrency_deadlock/Dockerfile
