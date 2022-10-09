@@ -17,6 +17,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./concurrency_deadlock.sln
     - name: Build
-      run: dotnet build ./concurrency_deadlock/concurrency_deadlock.csproj --no-restore
+      run: dotnet build ./concurrency_deadlock.sln --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./concurrency_deadlock.sln --no-build --verbosity normal
