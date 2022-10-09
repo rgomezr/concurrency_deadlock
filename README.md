@@ -1,4 +1,4 @@
-![example workflow](https://github.com/github/docs/actions/workflows/dotnet_build.yml/badge.svg)
+![.NET Build](https://github.com/rgomezr/concurrency_deadlock/actions/workflows/dotnet_build.yml/badge.svg)
 
 # Concurrency_deadlock
 Making deadlock scenarios within sync and async setups.
