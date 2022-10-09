@@ -1,14 +1,28 @@
 ﻿const string GET_BASE_URL = "https://api.postcodes.io/postcodes/";
 
-Dictionary<bool, string> responseDict = await IsUKPostcodeValid("BT35 8HR");
 
-Console.WriteLine(String.Format("{0}: {1}", responseDict.Keys.FirstOrDefault(), responseDict.Values.FirstOrDefault()));
+Console.WriteLine("Hello World! Type an UK postcode to validate: ");
+string? ukPostcodeToCheck = Console.ReadLine();
 
 
+if (!String.IsNullOrEmpty(ukPostcodeToCheck))
+{
 
-async Task<Dictionary<bool,string>> IsUKPostcodeValid(string ukPostcode) {
+    Dictionary<bool, string> responseDict = await IsUKPostcodeValid(ukPostcodeToCheck);
 
-    HttpClient httpClient = new HttpClient();
+    Console.WriteLine(String.Format("{0}: {1}", responseDict.Keys.FirstOrDefault(), responseDict.Values.FirstOrDefault()));
+
+}
+else
+{
+    Console.WriteLine("No postcode was entered");
+}
+
+
+static async Task<Dictionary<bool, string>> IsUKPostcodeValid(string ukPostcode)
+{
+
+    HttpClient httpClient = new();
 
     string uri = GET_BASE_URL + ukPostcode;
 
@@ -17,7 +31,8 @@ async Task<Dictionary<bool,string>> IsUKPostcodeValid(string ukPostcode) {
     {
         string dataResponse = await response.Content.ReadAsStringAsync();
         return new Dictionary<bool, string> { [true] = dataResponse };
-    } else
+    }
+    else
     {
         return new Dictionary<bool, string> { [false] = "" };
     }
