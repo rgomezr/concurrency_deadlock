@@ -13,5 +13,5 @@ The main objective of this repo is not really deadlocks and the different ways o
 * Set up different Github Actions towards a good CI/CD environment. Some of them are (will be applied on each PR creation):
   * Build.
   * Security scan for vulnerabilities.
-  * Testing source code.
+  * Testing source code using xUnit.
 * Use tags & releases together with the creation of a package.
