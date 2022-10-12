@@ -1,13 +1,40 @@
-﻿using System;
-namespace concurrency_deadlock
+﻿namespace concurrency_deadlock
 {
-    public static class PostcodeAPI
+    public class PostcodeAPI
     {
         /*CONSTS*/
-        const string GET_BASE_URL = "https://api.postcodes.io/postcodes/";
+        /// <summary>
+        /// Used as base URL for URI
+        /// </summary>
+        private const string GET_BASE_URL = "https://api.postcodes.io/postcodes/";
 
+        /// <summary>
+        /// Default UK postcode used for testing
+        /// </summary>
+        private const string DEFAULT_POSTCODE = "CT5 3NL";
 
-        public static async Task<Dictionary<bool, string>> IsUKPostcodeValid(string ukPostcode)
+        /// <summary>
+        /// Used to check if GET_BASE_URL has a success status code
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> IsPostcodeAPIReachable(string postcode)
+        {
+            HttpClient httpClient = new();
+
+            string uri = GET_BASE_URL + postcode;
+
+            var response = await httpClient.GetAsync(uri);
+
+            return response.IsSuccessStatusCode;
+
+        }
+        /// <summary>
+        /// Checks if parametrised <paramref name="ukPostcode"/>
+        /// is valid or not. If valid, returns additional info also.
+        /// </summary>
+        /// <param name="ukPostcode"></param>
+        /// <returns></returns>
+        public async Task<Dictionary<bool, string>> IsUKPostcodeValid(string ukPostcode)
         {
 
             HttpClient httpClient = new();
